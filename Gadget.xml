@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>Idézet</name>
+	<version>1.0</version>
+	<author name="Mortens">
+		<info url="http://www.google.hu" text="Google"/>
+		<logo src="images/author.png"/>
+	</author>
+	<copyright>© 2012</copyright>
+	<description>Idézet sidebar gadget.</description>
+	<icons>
+		<icon height="48" width="48" src="Images/mini.png"/>
+	</icons>
+	<hosts>
+		<host name="Idézet gadget">
+			<autoscaleDPI>true</autoscaleDPI>
+			<base type="HTML" apiVersion="1.0.0" src="Idezet.html"/>
+			<permissions>Full</permissions>
+			<platform minPlatformVersion="1.0"/>
+		</host>
+	</hosts>
+</gadget>

@@ -1,0 +1,93 @@
+﻿<html>
+	<head>
+		<title>PTS Technology ®</title>
+		<meta http-equiv="MSThemeCompatible" content="yes">
+		<meta http-equiv="Content-Language" content="hu">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<script type="text/javascript" language="JavaScript">
+		
+			var font_color = "White";
+			var font_type = "Verdana";
+			var font_size = 12;
+			var split_length = 80;
+			
+			var left = 5;
+			var top = 5;
+			var delta = 3;
+			
+			var second_row_top = top + font_size + delta;
+			var third_row_top = top + 2 * (font_size + delta);
+			var forth_row_top = top + 3 * (font_size + delta);
+
+			var ma;
+			var holnap;
+			var holnaputan;
+			var egy_het_mulva;
+
+			var ten_minutes = 600000;
+			
+			function SplitLine(str, n)
+			{
+				var b = '';
+				var s = str;
+				while (s.length > n)
+				{
+					var c = s.substring(0, n);
+					var split_index = c.lastIndexOf(' ');
+					var last_new_line_character_index = c.lastIndexOf('\n');
+					if (last_new_line_character_index != -1) split_index = last_new_line_character_index;
+					if (split_index == -1) split_index = n;
+					
+					b += c.substring(0, split_index) + '\n';
+					s = s.substring(split_index + 1);
+				}
+				return b + s;
+			}
+
+			var r = 8;
+			var a = 100;
+			var shadow_font_color = "Black";
+			
+			function WriteLine(background, str, x, y, font_color)
+			{
+				var s = SplitLine(str, split_length);
+				var txt = background.addTextObject(s, font_type, font_size, font_color, x, y);
+				txt.addGlow(shadow_font_color, r, a);
+				return txt.width;
+			}
+			
+			function Citation(background)
+			{
+				background.removeObjects();
+				WriteLine(background, Idezet(), left, top, font_color);
+			}
+
+			function Info()
+			{
+				//System.Gadget.settingsUI = "Settings.html";
+				Citation(citations);
+				setInterval('Citation(citations)', ten_minutes);
+			}
+		</script>
+		
+		<script src="db.js" type="text/javascript" language="JavaScript"></script>
+		
+		<style type="text/css">
+			.area {
+				width: 600px;
+				height: 300px;
+			}
+		</style>
+		
+	</head>
+	
+	<body class="area" onload="Info()">
+		
+		<div>
+			<g:background id="citations" style="position:relative; width: 650px; height: 300px; z-index: -1" src="./Images/bg.png">
+				<g:image src="next.png" alt="Következő" onclick="Citation(citations);" style="float: right; margin-right: 60px;" />
+			</g:background>
+		</div>		
+	</body>
+</html>
